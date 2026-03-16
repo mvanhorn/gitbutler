@@ -463,7 +463,7 @@ impl App {
         let commit_details = but_api::diff::commit_details(ctx, commit_id, ComputeLineStats::No)?;
         let current_message = commit_details.commit.inner.message.to_string();
 
-        if current_message.split_once('\n').is_some() {
+        if current_message.trim_end().split_once('\n').is_some() {
             messages.push(Message::RewordWithEditor);
             return Ok(());
         }
